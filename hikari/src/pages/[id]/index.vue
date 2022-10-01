@@ -17,7 +17,7 @@ const data = reactive({
 });
 
 const props = defineProps({
-	args: Array
+	id: String
 });
 
 function copy() {
@@ -25,13 +25,9 @@ function copy() {
 }
 
 onMounted(async () => {
-	const { args } = props;
-	if (args.length != 1) {
-		router.push("/");
-		return;
-	}
+	const { id } = props;
 
-	const res = await fetch(import.meta.env.VITE_API_URL + "?q=" + args[0]);
+	const res = await fetch(import.meta.env.VITE_API_URL + "?q=" + id);
 	if (!res.ok) {
 		router.push("/");
 		return;
