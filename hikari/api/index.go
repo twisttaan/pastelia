@@ -76,9 +76,11 @@ func ReadSnippet(dbpool *pgxpool.Pool, slug string) (*Snippet, error) {
 
 func Index(w http.ResponseWriter, r *http.Request) {
   databaseUrl := fmt.Sprintf(
-		"postgres://%s:%s@localhost:5432/%s",
+		"postgres://%s:%s@%s:%s/%s",
 		os.Getenv("POSTGRES_USER"),
 		os.Getenv("POSTGRES_PASSWORD"),
+    os.Getenv("POSTGRES_HOST"),
+    os.Getenv("POSTGRES_PORT"),
 		os.Getenv("POSTGRES_DB"),
 	)
 
